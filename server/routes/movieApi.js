@@ -2,13 +2,13 @@ const express = require('express');
 
 const router = new express.Router();
 
-const Sth = require('../models/sth');
+const MovieInfo = require('../models/movieInfo');
 
-router.route('/')
+router.route('/movies')
   .get((req, res) => {
-    Sth.getAll()
-   .then(sths => {
-      res.send(sths);
+    MovieInfo.getMovieInformation(req.query, res.handle);
+   .then(moiveInfos => {
+      res.send(moiveInfos);
    })
    .catch(err=>{
       res.status(400).send(err);
