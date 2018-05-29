@@ -1,18 +1,17 @@
 import AppDispatcher from '../AppDispatcher';
 import { EventEmitter } from 'events';
 
-
+var _movies = null;
 
 class MoviesStore extends EventEmitter {
-  constructor() {
-    super();
-
+  constructor(props) {
+    super(props);
     AppDispatcher.register(action => {
-      switch () {
-        case :
-
+      switch (action.type) {
+        case 'RECEIVE_MOVIES':
+          _movies = action.payload.movies;
+          this.emit('CHANGE');
           break;
-
       }
     })
   }
@@ -25,7 +24,10 @@ class MoviesStore extends EventEmitter {
     this.removeListener('CHANGE', cb);
   }
 
+  getMovies() {
+    return _movies;
+  }
 
 }
 
-export default new AStore();
+export default new MoviesStore();
