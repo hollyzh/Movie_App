@@ -1,12 +1,12 @@
 import ServerActions from './actions/ServerActions';
-import axios from 'axios';
+import $ from 'jquery';
 //import dotenv from 'dotenv';
 
 //dotenv.config();
 
 const API = {
   searchOneMovie(movieKeyword) {
-      axios.get(`http://www.omdbapi.com/?apikey=16db55dc&t=${movieKeyword}`, pokemon => {
+      $.get(`http://www.omdbapi.com/?apikey=16db55dc&t=${movieKeyword}`, movies => {
         ServerActions.receiveMovies(movies);
       })
   }

@@ -12,8 +12,7 @@ export default class HomePage extends Component {
   }
 
   searchMovie() {
-    let {movieKeyword} = this.state;
-    console.log("key:",movieKeyword);
+    var {movieKeyword} = this.state;
     MovieActions.searchOneMovie(movieKeyword);
   }
 
