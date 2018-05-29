@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router';
 
 import HomePage from './HomePage';
-
+import MovieList from './MovieList';
 
 export default class Layout extends Component {
 
@@ -11,6 +11,7 @@ export default class Layout extends Component {
     return (
       <div className="container">
         <HomePage />
+        <MovieList />
       </div>
     )
   }
