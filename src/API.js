@@ -7,7 +7,7 @@ dotenv.config();
 const API = {
   searchOneMovie(movieKeyword) {
       axios.get(`http://www.omdbapi.com/?apikey=${process.env.OMDB_API}&t=${movieKeyWords}`, pokemon => {
-        ServerActions.receiveMovies(movieKeyword);
+        ServerActions.receiveMovies(movies);
       })
   }
 }

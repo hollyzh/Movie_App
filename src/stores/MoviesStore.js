@@ -3,7 +3,7 @@ import { EventEmitter } from 'events';
 
 
 
-class AStore extends EventEmitter {
+class MoviesStore extends EventEmitter {
   constructor() {
     super();
 
@@ -12,7 +12,7 @@ class AStore extends EventEmitter {
         case :
 
           break;
-          
+
       }
     })
   }
