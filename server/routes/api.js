@@ -2,6 +2,6 @@ const express = require('express');
 
 const router = new express.Router();
 
-//router.use('/movieApi', require('./movieApi'));
+router.use('/user', require('./user'));
 
 module.exports = router;
