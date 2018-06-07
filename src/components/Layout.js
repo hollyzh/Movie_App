@@ -3,6 +3,7 @@ import { Link } from 'react-router';
 
 import HomePage from './HomePage';
 import MovieList from './MovieList';
+import LoginForm from './LoginForm';
 
 export default class Layout extends Component {
 
@@ -12,6 +13,7 @@ export default class Layout extends Component {
       <div className="container">
         <HomePage />
         <MovieList />
+        <LoginForm />
       </div>
     )
   }
