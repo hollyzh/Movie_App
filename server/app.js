@@ -44,7 +44,7 @@ app.use(webpackDevMiddleware(compiler, { publicPath: webpackConfig.output.public
 app.use(webpackHotMiddleware(compiler))
 
 // ROUTES
-// app.use('/api', require('./routes/api'))
+app.use('/api', require('./routes/api'))
 app.use('*', function (req, res) {
   res.sendFile(path.join(__dirname, '../src/index.html'))
 })

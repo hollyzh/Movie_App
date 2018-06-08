@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import UserActions from '../actions/UserActions';
 
 
 export default class LoginForm extends Component {
@@ -13,10 +14,8 @@ export default class LoginForm extends Component {
 
   _submit(e){
     e.preventDefault();
-    console.log(this.state)
+    UserActions.login(this.state);
   }
-
-
 
   render() {
     return(
