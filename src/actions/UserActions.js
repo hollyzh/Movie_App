@@ -9,6 +9,9 @@ const UserActions = {
   },
   logout() {
     API.logout();
+  },
+  register(user){
+    API.register(user);
   }
 }
 

@@ -1,6 +1,7 @@
 import ServerActions from './actions/ServerActions';
 import $ from 'jquery';
 import axios from 'axios';
+// import RouteActions from './actions/RouteActions';
 //import dotenv from 'dotenv';
 
 //dotenv.config();
@@ -29,7 +30,15 @@ const API = {
     axios.post('/api/user/logout')
       .then(ServerActions.removeUsers)
       .catch(console.error)
-  }
+  },
+  register(user) {
+    axios.post('/api/user/register', user)
+      .then(res => {
+        // RouteActions.route('/login');
+        console.log("res:", res)
+      })
+      .catch(console.error)
+  },
 }
 
 export default API;

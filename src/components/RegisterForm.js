@@ -10,7 +10,6 @@ export default class RegisterForm extends Component {
         password1: '',
         password2: ''
     }
-    // this._onInputChange = this._onInputChange.bind(this);
     this._submit = this._submit.bind(this);
   }
 
@@ -18,13 +17,28 @@ export default class RegisterForm extends Component {
     e.preventDefault();
     var {username, password1, password2} = this.state;
     if(/.{6,}/.test(username) === false) {
-      alert("Username must be at least 6 characters long.");
+      this.setState({username: ''});
+      return alert("Username must be at least 6 characters long.");
     }
     if(/^(?![a-zA-Z]{8,10}$)(?![a-z0-9]{8,10}$)(?![0-9A-Z]{8,10}$)(?=.*[!@#\$%\^&\*])/.test(password1)===false){
-      alert("Password must be at least 8-10 characters, One captial letter, one lowercase letter, one digit, and one special sign.")
+      this.setState({
+        password1: '',
+        password2: ''
+      });
+      return alert("Password must be at least 8-10 characters, One captial letter, one lowercase letter, one digit, and one special sign.")
     }
-
-    console.log(this.state);
+    if(password1 !== password2){
+      this.setState({
+        password1: '',
+        password2: ''
+      });
+      return alert("Password entered do not match. Please reenter.");
+    }
+    var user = {
+      username,
+      password: password1
+    };
+    UserActions.register(user);
   }
 
   render() {
