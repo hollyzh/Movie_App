@@ -12,6 +12,11 @@ const ServerActions = {
       type:'RECEIVE_USERS',
       payload: {userInfo}
     })
+  },
+  removeUsers(userInfo){
+    AppDispatcher.dispatch({
+      type: 'REMOVE_USERS'
+    })
   }
 }
 

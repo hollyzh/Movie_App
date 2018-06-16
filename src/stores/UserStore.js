@@ -12,6 +12,10 @@ class UserStore extends EventEmitter {
           _user = action.payload.userInfo;
           this.emit('CHANGE');
           break;
+        case 'REMOVE_USERS':
+          _user = null;
+          this.emit('CHANGE');
+          break;
       }
     })
   }
