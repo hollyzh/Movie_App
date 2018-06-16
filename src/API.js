@@ -1,6 +1,7 @@
 import ServerActions from './actions/ServerActions';
 import $ from 'jquery';
 import axios from 'axios';
+import UserActions from './actions/UserActions';
 // import RouteActions from './actions/RouteActions';
 //import dotenv from 'dotenv';
 
@@ -16,7 +17,7 @@ const API = {
   login(userInfo) {
     axios.post('/api/user/login', userInfo)
       .then(() => {
-        UserActions.getUsers()
+       UserActions.getUsers()
       })
       .catch(console.error)
   },

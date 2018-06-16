@@ -27,7 +27,7 @@ export default class MovieList extends Component {
 
   render() {
     var {movies} = this.state;
-    console.log(movies);
+    // console.log(movies);
     return (
       <div className="row">
         Hello

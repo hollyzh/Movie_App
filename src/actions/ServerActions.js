@@ -6,8 +6,13 @@ const ServerActions = {
       type:'RECEIVE_MOVIES',
       payload: {movies}
     })
+  },
+  receiveUsers(userInfo){
+    AppDispatcher.dispatch({
+      type:'RECEIVE_USERS',
+      payload: {userInfo}
+    })
   }
-
 }
 
 export default ServerActions;

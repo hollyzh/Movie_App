@@ -5,6 +5,7 @@ import HomePage from './HomePage';
 import MovieList from './MovieList';
 import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
+import Personal from './Personal';
 
 export default class Layout extends Component {
 
@@ -14,8 +15,9 @@ export default class Layout extends Component {
       <div className="container">
         <HomePage />
         <MovieList />
-        <RegisterForm />
-        {/* <LoginForm /> */}
+        <Personal />
+        {/* <RegisterForm /> */}
+        <LoginForm />
       </div>
     )
   }

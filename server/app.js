@@ -8,6 +8,7 @@ const MONGO_URI='mongodb://localhost/movieApidb';
 // PACKAGE REQUIRES
 const express = require('express')
 const morgan = require('morgan')
+const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser')
 const path = require('path')
 const mongoose = require('mongoose');
@@ -32,6 +33,7 @@ app.use(morgan('dev'))
 app.use(bodyParser.json({ limit: '50mb' }))
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }))
 app.use(express.static('src'))
+app.use(cookieParser())
 // app.use(cors())
 app.use((req, res, next) => {
   res.handle = (err, data) => res.status(err ? 400 : 200).send(err || data)
