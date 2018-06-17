@@ -1,8 +1,11 @@
 import API from '../API';
 
 const MovieActions = {
-  searchOneMovie(movieKeyword) {
-    API.searchOneMovie(movieKeyword);
+  searchMovies(movieKeyword) {
+    API.searchMovies(movieKeyword);
+  },
+  searchOneMovie(id) {
+    API.searchOneMovie(id);
   }
 }
 

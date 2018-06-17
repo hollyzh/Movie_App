@@ -13,7 +13,7 @@ export default class HomePage extends Component {
 
   searchMovie() {
     var {movieKeyword} = this.state;
-    MovieActions.searchOneMovie(movieKeyword);
+    MovieActions.searchMovies(movieKeyword);
   }
 
   render() {

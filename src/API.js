@@ -8,12 +8,17 @@ import UserActions from './actions/UserActions';
 //dotenv.config();
 
 const API = {
-  searchOneMovie(movieKeyword) {
+  searchMovies(movieKeyword) {
     $.get(`http://www.omdbapi.com/?apikey=16db55dc&s=${movieKeyword}`, movies => {
       ServerActions.receiveMovies(movies);
     })
   },
-
+  searchOneMovie(id) {
+    $.get(`http://www.omdbapi.com/?apikey=16db55dc&i=${id}`, movie => {
+      console.log('movie:', movie)
+      // ServerActions.receiveMovies(movie);
+    })
+  },
   login(userInfo) {
     axios.post('/api/user/login', userInfo)
       .then(() => {

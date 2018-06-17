@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
+import MovieActions from '../actions/MovieActions';
 
 
 export default class MovieList extends Component {
@@ -9,6 +10,7 @@ export default class MovieList extends Component {
       movies: MoviesStore.getMovies()
     };
     this._onchange = this._onchange.bind(this);
+    this._movieDetial = this._movieDetial.bind(this);
   }
 
   componentWillMount() {
@@ -23,6 +25,10 @@ export default class MovieList extends Component {
     this.setState({
       movies: MoviesStore.getMovies()
     })
+  }
+
+  _movieDetial(imdbID){
+    MovieActions.searchOneMovie(imdbID);
   }
 
   render() {
@@ -41,8 +47,7 @@ export default class MovieList extends Component {
               <h3>{Title}</h3>
               <p>{Year}</p>
               <p>
-                <a href="#" className="btn btn-primary" role="button">Button</a>
-                <a href="#" className="btn btn-default" role="button">Button</a>
+                <a onClick={e=>this._movieDetial(imdbID)} className="btn btn-primary" role="button">Detail</a>
               </p>
             </div>
           </div>
