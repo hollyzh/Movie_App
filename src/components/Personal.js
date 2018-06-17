@@ -42,7 +42,6 @@ export default class Personal extends Component {
         <p className="navbar-text">Welcome {user.username}!</p>
         <p><a onClick={this._logout} style={{cursor:'pointer'}}>Logout</a></p>
       </div>
-
     )
   }
 };

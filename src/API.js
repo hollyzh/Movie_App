@@ -9,7 +9,7 @@ import UserActions from './actions/UserActions';
 
 const API = {
   searchOneMovie(movieKeyword) {
-    $.get(`http://www.omdbapi.com/?apikey=16db55dc&t=${movieKeyword}`, movies => {
+    $.get(`http://www.omdbapi.com/?apikey=16db55dc&s=${movieKeyword}`, movies => {
       ServerActions.receiveMovies(movies);
     })
   },

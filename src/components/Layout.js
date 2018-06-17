@@ -15,9 +15,9 @@ export default class Layout extends Component {
       <div className="container">
         <HomePage />
         <MovieList />
-        <Personal />
+        {/* <Personal /> */}
         {/* <RegisterForm /> */}
-        <LoginForm />
+        {/* <LoginForm /> */}
       </div>
     )
   }
