@@ -7,6 +7,12 @@ const ServerActions = {
       payload: {movies}
     })
   },
+  receiveOneMovie(movie) {
+    AppDispatcher.dispatch({
+      type:'RECEIVE_ONE_MOVIE',
+      payload: {movie}
+    })
+  },
   receiveUsers(userInfo){
     AppDispatcher.dispatch({
       type:'RECEIVE_USERS',

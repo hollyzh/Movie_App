@@ -47,7 +47,9 @@ export default class MovieList extends Component {
               <h3>{Title}</h3>
               <p>{Year}</p>
               <p>
-                <a onClick={e=>this._movieDetial(imdbID)} className="btn btn-primary" role="button">Detail</a>
+                <a onClick={e=>this._movieDetial(imdbID)}
+                  className="btn btn-primary"
+                  role="button">Detail</a>
               </p>
             </div>
           </div>

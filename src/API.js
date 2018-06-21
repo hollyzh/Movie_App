@@ -15,8 +15,7 @@ const API = {
   },
   searchOneMovie(id) {
     $.get(`http://www.omdbapi.com/?apikey=16db55dc&i=${id}`, movie => {
-      console.log('movie:', movie)
-      // ServerActions.receiveMovies(movie);
+      ServerActions.receiveOneMovie(movie);
     })
   },
   login(userInfo) {

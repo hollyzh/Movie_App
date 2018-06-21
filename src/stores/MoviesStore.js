@@ -2,6 +2,7 @@ import AppDispatcher from '../AppDispatcher';
 import { EventEmitter } from 'events';
 
 var _movies = null;
+var _movie = null;
 
 class MoviesStore extends EventEmitter {
   constructor(props) {
@@ -10,6 +11,10 @@ class MoviesStore extends EventEmitter {
       switch (action.type) {
         case 'RECEIVE_MOVIES':
           _movies = action.payload.movies;
+          this.emit('CHANGE');
+          break;
+        case 'RECEIVE_ONE_MOVIE':
+          _movie = action.payload.movie;
           this.emit('CHANGE');
           break;
       }
@@ -26,6 +31,10 @@ class MoviesStore extends EventEmitter {
 
   getMovies() {
     return _movies;
+  }
+
+  getOneMovie() {
+    return _movie;
   }
 
 }
