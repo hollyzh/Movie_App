@@ -13,11 +13,12 @@ export default class Layout extends Component {
   render() {
     return (
       <div className="container">
-        <HomePage />
+        {this.props.children}
         <MovieList />
         {/* <Personal /> */}
         {/* <RegisterForm /> */}
         {/* <LoginForm /> */}
+
       </div>
     )
   }

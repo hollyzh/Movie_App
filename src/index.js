@@ -10,14 +10,13 @@ import MovieList from './components/MovieList';
 import RegisterForm from './components/RegisterForm';
 
 render(
-  <Router history={browserHistory}>
+  <Router history={browserHistory} >
     <Route path="/" component={Layout}>
       <IndexRoute component={HomePage} />
       <Route path='register' component={RegisterForm}></Route>
       <Route path='login' component={LoginForm}></Route>
       <Route path='movies' component={MovieList}></Route>
       <Route path='movieDetail' component={MovieDetail}></Route>
-      
     </Route>
   </Router>,
   document.getElementById('root')

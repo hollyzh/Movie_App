@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
 import MovieActions from '../actions/MovieActions';
+import { browserHistory } from 'react-router';
+
 
 
 export default class MovieList extends Component {
@@ -10,7 +12,7 @@ export default class MovieList extends Component {
       movies: MoviesStore.getMovies()
     };
     this._onchange = this._onchange.bind(this);
-    this._movieDetial = this._movieDetial.bind(this);
+    this.getDetail = this.getDetail.bind(this);
   }
 
   componentWillMount() {
@@ -27,8 +29,9 @@ export default class MovieList extends Component {
     })
   }
 
-  _movieDetial(imdbID){
+  getDetail(imdbID) {
     MovieActions.searchOneMovie(imdbID);
+    browserHistory.push({pathname: '/movieDetail'});
   }
 
   render() {
@@ -47,9 +50,10 @@ export default class MovieList extends Component {
               <h3>{Title}</h3>
               <p>{Year}</p>
               <p>
-                <a onClick={e=>this._movieDetial(imdbID)}
+                <a onClick={e=>{this.getDetail(imdbID)}}
                   className="btn btn-primary"
-                  role="button">Detail</a>
+                  role="button"
+                >Detail</a>
               </p>
             </div>
           </div>
