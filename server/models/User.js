@@ -48,9 +48,7 @@ userSchema.statics.authenticate = function(userObj, cb) {
 };
 
 userSchema.statics.authMiddleware = function(req, res, next) {
-  console.log('req.cookies:', req.cookies)
   var token = req.cookies.authtoken;
-  console.log('token:', token)
   jwt.verify(token, JWT_SECRET, (err, payload) => {
     if(err) return res.status(401).send(err);
 

@@ -15,7 +15,6 @@ export default class MovieDetail extends Component {
 
   componentWillMount() {
     MoviesStore.startListening(this._onchange);
-
   }
 
   componentWillUnmount() {
@@ -26,6 +25,10 @@ export default class MovieDetail extends Component {
     this.setState({
       movie: MoviesStore.getOneMovie()
     })
+  }
+
+  saveOneMovie(movie, username, movieId){
+    MovieActions.saveMovie(movie, username, movieId);
   }
 
   render() {
@@ -50,7 +53,8 @@ export default class MovieDetail extends Component {
                   <p>{Plot}</p>
                   <p>{imdbRating}</p>
                   <p>
-                    <a className="btn btn-primary" role="button">Save</a>
+                    <a className="btn btn-primary" role="button" onClick={e=>this.saveOneMovie(movie, "sample@gmail.com", imdbID)}>Save</a>
+                    <a className="btn btn-default" role="button">Delete</a>
                   </p>
                 </div>
               </div>
