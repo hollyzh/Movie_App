@@ -7,8 +7,8 @@ const MovieActions = {
   searchOneMovie(id) {
     API.searchOneMovie(id);
   },
-  saveMovie(movie, username, movieId) {
-    API.saveMovie(movie, username, movieId);
+  saveMovie(movie, username) {
+    API.saveMovie(movie, username);
   }
 }
 

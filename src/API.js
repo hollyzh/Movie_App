@@ -18,12 +18,11 @@ const API = {
       ServerActions.receiveOneMovie(movie);
     })
   },
-  saveMovie(movie, username, movieId) {
-    axios.post('/api/movies/saveMovie', {movie: movie, username: username, movieId: movieId})
-      .then(()=> {
-        console.log('movie in API:', movie)
-        ServerActions.receiveOneMovie(movie);
-      })
+  saveMovie(movie, username) {
+    axios.post('/api/movies/saveMovie', {favoriteMovie: movie, ownerUsername: username})
+      .then(res=> res.data)
+        // console.log('movie in API:', movie)
+        // ServerActions.receiveOneMovie(movie);
   },
   login(userInfo) {
     axios.post('/api/user/login', userInfo)

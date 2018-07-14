@@ -27,8 +27,8 @@ export default class MovieDetail extends Component {
     })
   }
 
-  saveOneMovie(movie, username, movieId){
-    MovieActions.saveMovie(movie, username, movieId);
+  saveOneMovie(movie, username){
+    MovieActions.saveMovie(movie, username);
   }
 
   render() {
@@ -53,7 +53,7 @@ export default class MovieDetail extends Component {
                   <p>{Plot}</p>
                   <p>{imdbRating}</p>
                   <p>
-                    <a className="btn btn-primary" role="button" onClick={e=>this.saveOneMovie(movie, "sample@gmail.com", imdbID)}>Save</a>
+                    <a className="btn btn-primary" role="button" onClick={e=>this.saveOneMovie(movie, "test@gmail.com")}>Save</a>
                     <a className="btn btn-default" role="button">Delete</a>
                   </p>
                 </div>

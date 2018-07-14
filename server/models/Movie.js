@@ -2,31 +2,38 @@ const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
   favoriteMovie: [],
-  ownerUsername:{type: String, require:true },
+  ownerUsername: {type: String, require:true },
   // owners: [{type: mongoose.Schema.Types.ObjectId, ref:'User'}],
 });
 
 
 movieSchema.statics.saveMovie = function(movieObj, cb) {
-  this.findOne({ownerUsername: movieObj.username}, (err, dbUser) => {
+  var {favoriteMovie, ownerUsername} = movieObj;
+  this.findOne({ownerUsername: ownerUsername}, (err, dbMovie) => {
     if(err) return cb(err);
-    if(!dbUser) {
-      mongoose.model('Movie').
-      create({favoriteMovie:movieObj.movie, ownerUsername: movieObj.username}, function(err){
+    if(!dbMovie) {
+      this.create(movieObj, (err) => {
         if(err) return cb(err);
       });
     } else {
-      var favoriteMovies = dbUser.favoriteMovie;
+      var favoriteMovies = dbMovie.favoriteMovie;
+      var idArr = [];
       favoriteMovies.map(fm => {
         var id = fm.imdbID;
-        if(id === movieObj.movieId) {
-          // return cb({error: 'Already save it.'});
-        }
+        idArr.push(id);
       })
-
+      var movieId = favoriteMovie.imdbID;
+      if(idArr.indexOf(movieId) == -1){
+        favoriteMovies.push(favoriteMovie);
+        this.update({ownerUsername: ownerUsername},{$set: { favoriteMovie: favoriteMovies}},(err, dbNewMovie)=>{
+          if(err) return cb(err);
+        });
+      }
     }
   });
 };
+
+
 
 
 
