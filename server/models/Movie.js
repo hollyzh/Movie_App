@@ -25,7 +25,7 @@ movieSchema.statics.saveMovie = function(movieObj, cb) {
       var movieId = favoriteMovie.imdbID;
       if(idArr.indexOf(movieId) == -1){
         favoriteMovies.push(favoriteMovie);
-        this.update({ownerUsername: ownerUsername},{$set: { favoriteMovie: favoriteMovies}},(err, dbNewMovie)=>{
+        this.update({ownerUsername: ownerUsername},{$set: { favoriteMovie: favoriteMovies}},(err)=>{
           if(err) return cb(err);
         });
       }

@@ -38,4 +38,6 @@ router.post('/logout', (req, res) => {
   res.clearCookie('authtoken').send();
 });
 
+
+
 module.exports = router;

@@ -7,7 +7,6 @@ export default class MovieDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      id: null,
       movie: MoviesStore.getOneMovie()
     };
     this._onchange = this._onchange.bind(this);

@@ -9,6 +9,9 @@ const MovieActions = {
   },
   saveMovie(movie, username) {
     API.saveMovie(movie, username);
+  },
+  getFavoriteMovies(username) {
+    API.getFavoriteMovies(username);
   }
 }
 

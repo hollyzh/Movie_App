@@ -20,9 +20,7 @@ const API = {
   },
   saveMovie(movie, username) {
     axios.post('/api/movies/saveMovie', {favoriteMovie: movie, ownerUsername: username})
-      .then(res=> res.data)
-        // console.log('movie in API:', movie)
-        // ServerActions.receiveOneMovie(movie);
+      .catch(console.error)
   },
   login(userInfo) {
     axios.post('/api/user/login', userInfo)
@@ -50,6 +48,12 @@ const API = {
       })
       .catch(console.error)
   },
+  getFavoriteMovies(username) {
+    axios.get(`/api/movies/favoriteMovies/?${username}`)
+      .then(res => res.data)
+      .then(ServerActions.receiveMovies)
+      .catch(console.error)
+  }
 }
 
 export default API;

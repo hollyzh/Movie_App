@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserStore from '../stores/UserStore';
 import UserActions from '../actions/UserActions';
+import MovieActions from '../actions/MovieActions';
 
 
 export default class Personal extends Component {
@@ -11,6 +12,7 @@ export default class Personal extends Component {
     };
     this._onchange = this._onchange.bind(this);
     this._logout = this._logout.bind(this);
+    this._getFavoriteMovies = this._getFavoriteMovies.bind(this);
   }
 
   componentWillMount() {
@@ -28,7 +30,11 @@ export default class Personal extends Component {
   }
 
   _logout() {
-    UserActions.logout()
+    UserActions.logout();
+  }
+
+  _getFavoriteMovies(username) {
+    MovieActions.getFavoriteMovies(username);
   }
 
   render() {
@@ -41,6 +47,7 @@ export default class Personal extends Component {
       <div>
         <p className="navbar-text">Welcome {user.username}!</p>
         <p><a onClick={this._logout} style={{cursor:'pointer'}}>Logout</a></p>
+        <p><a onClick={()=>this._getFavoriteMovies(user.username)} style={{cursor:'pointer'}}>Favorite</a></p>
       </div>
     )
   }
