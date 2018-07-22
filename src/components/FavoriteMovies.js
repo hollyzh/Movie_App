@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
-// import MovieActions from '../actions/MovieActions';
+import MovieActions from '../actions/MovieActions';
 
 export default class FavoriteMovies extends Component {
   constructor(props) {
@@ -9,6 +9,7 @@ export default class FavoriteMovies extends Component {
       favoriteMovies: MoviesStore.getMovies()
     };
     this._onchange = this._onchange.bind(this);
+    this._deleteFavoriteMovie = this._deleteFavoriteMovie.bind(this);
   }
 
   componentWillMount() {
@@ -25,47 +26,51 @@ export default class FavoriteMovies extends Component {
     })
   }
 
+  _deleteFavoriteMovie(imdbID, username) {
+    MovieActions.removeMovie(imdbID, username);
+  }
+
   render() {
     var {favoriteMovies} = this.state;
-    console.log('favoriteMovies:', favoriteMovies)
+    var favoritesBlock;
+    if(!favoriteMovies){
+      favoritesBlock = <div className="row"></div>
+    }else{
+      var {favoriteMovie, ownerUsername} = favoriteMovies;
+      if(favoriteMovie) {
+        favoritesBlock = favoriteMovie.map(fm =>{
+          var {Title, Runtime, Actors, Awards, Director, Genre, Plot, Poster, imdbRating, imdbID} = fm;
+          return (
+            <div className="thumbnail" key={imdbID}>
+              <img src={Poster} alt={Title} />
+              <div className="caption">
+                <h3>{Title}</h3>
+                <p>{Runtime}</p>
+                <p>{Actors}</p>
+                <p>{Awards}</p>
+                <p>{Director}</p>
+                <p>{Genre}</p>
+                <p>{Plot}</p>
+                <p>{imdbRating}</p>
+                <p>
+                  <a className="btn btn-default" role="button" onClick={()=>this._deleteFavoriteMovie(imdbID, ownerUsername)}>Delete</a>
+                </p>
+              </div>
+            </div>
+          )
+        })
+      } else {
+        favoritesBlock = <div className="row"></div>;
+      }
+    }
     return(
       <div className="container">
         <div className="row">
           <div className="col-sm-6 col-md-4">
-            favorite
+            {favoritesBlock}
           </div>
         </div>
       </div>
     )
-    // if(!movie){
-    //   return (<div className="row"></div>)
-    // }else{
-    //   var {Title, Runtime, Actors, Awards, Director, Genre, Plot, Poster, imdbRating, imdbID} = movie;
-    //   return (
-    //     <div className="container">
-    //       <div className="row">
-    //         <div className="col-sm-6 col-md-4">
-    //           <div className="thumbnail" key={imdbID}>
-    //             <img src={Poster} alt={Title} />
-    //             <div className="caption">
-    //               <h3>{Title}</h3>
-    //               <p>{Runtime}</p>
-    //               <p>{Actors}</p>
-    //               <p>{Awards}</p>
-    //               <p>{Director}</p>
-    //               <p>{Genre}</p>
-    //               <p>{Plot}</p>
-    //               <p>{imdbRating}</p>
-    //               <p>
-    //                 <a className="btn btn-primary" role="button" onClick={e=>this.saveOneMovie(movie, "test@gmail.com")}>Save</a>
-    //                 <a className="btn btn-default" role="button">Delete</a>
-    //               </p>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    //   )
-    // }
   }
 };

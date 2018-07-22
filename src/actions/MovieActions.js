@@ -12,6 +12,9 @@ const MovieActions = {
   },
   getFavoriteMovies(username) {
     API.getFavoriteMovies(username);
+  },
+  removeMovie(imdbID, username){
+    API.removeMovie(imdbID, username);
   }
 }
 

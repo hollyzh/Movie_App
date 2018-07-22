@@ -12,7 +12,7 @@ router.post('/saveMovie',(req, res) => {
 
 
 router.get('/favoriteMovies', (req, res) => {
-  queryObj = req.query;
+  var queryObj = req.query;
   var queryArr = Object.getOwnPropertyNames(queryObj);
   var username = queryArr[0];
   Movie.findOne({ownerUsername: username}, (err, favoriteMovies) => {
@@ -22,7 +22,13 @@ router.get('/favoriteMovies', (req, res) => {
       return res.send(favoriteMovies);
     }
   });
-})
+});
+
+router.post('/deleteMovies',(req, res) => {
+  Movie.deleteMovies(req.body, (err, favoriteMovies) => {
+      res.status(err ? 400 : 200).send(err);
+  });
+});
 
 
 

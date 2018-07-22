@@ -2,6 +2,7 @@ import ServerActions from './actions/ServerActions';
 import $ from 'jquery';
 import axios from 'axios';
 import UserActions from './actions/UserActions';
+import MovieActions from './actions/MovieActions';
 import RouteActions from './actions/RouteActions';
 //import dotenv from 'dotenv';
 
@@ -51,6 +52,12 @@ const API = {
   getFavoriteMovies(username) {
     axios.get(`/api/movies/favoriteMovies/?${username}`)
       .then(res => res.data)
+      .then(ServerActions.receiveMovies)
+      .catch(console.error)
+  },
+  removeMovie(imdbID, username) {
+    axios.post('/api/movies/deleteMovies',{id: imdbID, ownerUsername: username})
+      .then(MovieActions.getFavoriteMovies(username))
       .then(ServerActions.receiveMovies)
       .catch(console.error)
   }

@@ -33,8 +33,19 @@ movieSchema.statics.saveMovie = function(movieObj, cb) {
   });
 };
 
-
-
+movieSchema.statics.deleteMovies = function(movieObj, cb) {
+  var {id, ownerUsername} = movieObj;
+  this.findOne({ownerUsername: ownerUsername}, (err, dbMovie) => {
+    if(err) return cb(err);
+    if(dbMovie) {
+      var favoriteMovies = dbMovie.favoriteMovie;
+      var newfavoriteMovies = favoriteMovies.filter(fm => fm.imdbID !== id);
+      this.update({ownerUsername: ownerUsername}, {$set: {favoriteMovie: newfavoriteMovies}}, (err) => {
+        if(err) return cb(err);
+      })
+    }
+  });
+};
 
 
 const Movie = mongoose.model('Movie', movieSchema);
