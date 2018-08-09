@@ -8,6 +8,7 @@ import LoginForm from './LoginForm';
 import Personal from './Personal';
 import FavoriteMovies from './FavoriteMovies';
 
+
 export default class Layout extends Component {
 
 
@@ -15,10 +16,10 @@ export default class Layout extends Component {
     return (
       <div className="container">
         {this.props.children}
-        {/* <MovieList /> */}
+        <MovieList />
         <Personal />
         {/* <RegisterForm /> */}
-        <LoginForm />
+        {/* <LoginForm /> */}
         <FavoriteMovies />
       </div>
     )
