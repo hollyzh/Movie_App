@@ -7,6 +7,7 @@ import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Personal from './Personal';
 import FavoriteMovies from './FavoriteMovies';
+import '../css/style.sass';
 
 
 export default class Layout extends Component {
