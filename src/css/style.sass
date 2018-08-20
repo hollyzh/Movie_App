@@ -1,5 +1,39 @@
 $bg-picture: url('../images/bg.jpg');
 
+@mixin centerer
+  position: absolute;
+  top: 50%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+
+
 body
-  background-image: $bg-picture
   background-size: cover
+  background-repeat: no-repeat
+  min-height: 100vh
+  background: white $bg-picture center center no-repeat
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  position: relative
+
+#searchBarBG
+  @include centerer
+  background-color: rgba(224, 255, 255, 0.3)
+  border: 1px solid grey
+  height: 25%
+  border-radius: 10px
+  position:static
+  *zoom: 1
+
+#searchBar
+  position: relative
+  @include centerer
+
+@media(max-width:750px)
+  #searchBarBG
+    width: 80%
+
+@media(min-width:750px)
+  #searchBarBG
+    width: 40%

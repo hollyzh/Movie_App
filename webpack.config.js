@@ -35,8 +35,8 @@ module.exports = {
         },
       },
       {
-        test: /(\.css)$/,
-        loaders: ['style', 'css'],
+        test: /(\.s[ca]ss)$/,
+        loaders: ['style', 'css', 'sass'],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
@@ -57,10 +57,6 @@ module.exports = {
       {
         test: /bootstrap-sass[\/\\]assets[\/\\]javascripts[\/\\]/,
         loader: 'imports?jQuery=jquery',
-      },
-      {
-        test: /(\.sass)$/,
-        loaders: ['style', 'css', 'sass']
       },
       {
         test: /\.(png|jpg|gif)$/,

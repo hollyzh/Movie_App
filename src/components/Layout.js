@@ -7,6 +7,7 @@ import RegisterForm from './RegisterForm';
 import LoginForm from './LoginForm';
 import Personal from './Personal';
 import FavoriteMovies from './FavoriteMovies';
+import Navbar from './Navbar';
 import '../css/style.sass';
 
 
@@ -15,13 +16,14 @@ export default class Layout extends Component {
 
   render() {
     return (
-      <div className="container">
+      <div>
+        <Navbar />
         {this.props.children}
-        <MovieList />
-        <Personal />
+        {/* <MovieList /> */}
+        {/* <Personal /> */}
         {/* <RegisterForm /> */}
         {/* <LoginForm /> */}
-        <FavoriteMovies />
+        {/* <FavoriteMovies /> */}
       </div>
     )
   }
