@@ -1,38 +1,34 @@
 import React, { Component } from 'react';
-import { Button, Dropdown, Menu } from 'semantic-ui-react'
+import { browserHistory } from 'react-router';
+import { Button, Dropdown, Menu } from 'semantic-ui-react';
+
 
 export default class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      activeItem: 'home'
-    };
+    this._login = this._login.bind(this);
+    this._signUp = this._signUp.bind(this);
   }
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
+  _login() {
+    browserHistory.push({ pathname: '/login' });
+  }
+
+  _signUp() {
+    browserHistory.push({ pathname: '/register' });
+  }
 
   render() {
-    const { activeItem } = this.state;
     return (
       <div className="navBar">
         <Menu size='huge'>
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-          <Menu.Item
-            name='messages'
-            active={activeItem === 'messages'}
-            onClick={this.handleItemClick}
-          />
+          <Menu.Item name='MOVIE APP'/>
           <Menu.Menu position='right'>
-            <Dropdown item text='Language'>
-              <Dropdown.Menu>
-                <Dropdown.Item>English</Dropdown.Item>
-                <Dropdown.Item>Russian</Dropdown.Item>
-                <Dropdown.Item>Spanish</Dropdown.Item>
-              </Dropdown.Menu>
-            </Dropdown>
-
             <Menu.Item>
-              <Button primary>Sign Up</Button>
+              <Button onClick={e=>this._login()}>Log-in</Button>
+            </Menu.Item>
+            <Menu.Item>
+              <Button primary onClick={e=>this._signUp()}>Sign Up</Button>
             </Menu.Item>
           </Menu.Menu>
         </Menu>
