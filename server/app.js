@@ -21,7 +21,7 @@ const webpackHotMiddleware = require('webpack-hot-middleware')
 const webpackConfig = require('../webpack.config')
 
 // DB CONNECT
-mongoose.connect(MONGO_URI, err => {
+mongoose.connect(MONGO_URI, {useNewUrlParser: true}, err => {
   console.log(err || `MongoDb connected to ${MONGO_URI}`);
 })
 

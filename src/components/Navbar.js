@@ -8,6 +8,7 @@ export default class HomePage extends Component {
     super(props);
     this._login = this._login.bind(this);
     this._signUp = this._signUp.bind(this);
+    this._homePage = this._homePage.bind(this);
   }
 
   _login() {
@@ -18,11 +19,16 @@ export default class HomePage extends Component {
     browserHistory.push({ pathname: '/register' });
   }
 
+  _homePage() {
+    browserHistory.push({pathname: '/'})
+  }
+
   render() {
     return (
       <div className="navBar">
         <Menu size='huge'>
-          <Menu.Item name='MOVIE APP'/>
+          <Menu.Item name='MOVIE APP' onClick= {e=>this._homePage()}>
+          </Menu.Item>
           <Menu.Menu position='right'>
             <Menu.Item>
               <Button onClick={e=>this._login()}>Log-in</Button>

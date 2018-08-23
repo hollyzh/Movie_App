@@ -1,11 +1,17 @@
 $bg-picture: url('../images/bg.jpg');
 
 @mixin centerer
-  position: absolute;
-  top: 50%;
-  left: 55%;
-  transform: translate(-50%, -50%);
+  position: absolute
+  top: 50%
+  left: 50%
+  transform: translate(-50%, -50%)
 
+@mixin bg-box
+  background-color: rgba(224, 255, 255, 0.5)
+  border: 1px solid grey
+  border-radius: 10px
+  // position:static
+  // *zoom: 1
 
 body
   background-size: cover
@@ -19,21 +25,37 @@ body
 
 #searchBarBG
   @include centerer
-  background-color: rgba(224, 255, 255, 0.3)
-  border: 1px solid grey
-  height: 25%
-  border-radius: 10px
-  position:static
-  *zoom: 1
+  @include bg-box
+  height: 200px
 
 #searchBar
-  position: relative
   @include centerer
 
 @media(max-width:750px)
-  #searchBarBG
+  #searchBarBG, .loginContainer
     width: 80%
 
 @media(min-width:750px)
-  #searchBarBG
+  #searchBarBG, .loginContainer
     width: 40%
+
+.loginContainer
+  @include centerer
+  @include bg-box
+  height: 300px
+  h2
+    text-align: center
+    color: black
+    margin-top: 10px
+  form
+    margin-top: 5%
+  label
+    font-size: 14px !important
+  i
+    color: red
+  .pwdInput
+    margin-top: 20px !important
+  button
+    margin-top: 10px !important
+    width: 30%
+    
