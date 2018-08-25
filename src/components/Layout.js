@@ -18,7 +18,7 @@ export default class Layout extends Component {
         <Navbar />
         {this.props.children}
         {/* <MovieList /> */}
-        {/* <Personal /> */}
+        <Personal />
         {/* <RegisterForm /> */}
         {/* <LoginForm /> */}
         {/* <FavoriteMovies /> */}

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 import UserActions from '../actions/UserActions';
+import axios from 'axios';
 
 export default class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       username: '',
-      password: ''
+      password: '',
+      message: ''
     }
     this._submit = this._submit.bind(this);
   }
@@ -14,12 +16,21 @@ export default class LoginForm extends Component {
   _submit(e){
     e.preventDefault();
     UserActions.login(this.state);
+    axios.post('/api/user/login', this.state)
+    .then(res => res.data)
+    .then(data => {
+      this.setState({
+        message: data
+      })
+    })
   }
 
   render() {
+    var {message} = this.state;
     return(
       <div className="container loginContainer">
         <h2>Login</h2>
+        <p>{message}</p>
         <form className='ui form' onSubmit={this._submit}>
           <div className="field">
             <label htmlFor="username">

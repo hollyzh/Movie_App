@@ -13,7 +13,7 @@ router.post('/register',(req, res) => {
 router.post('/login', (req, res) => {
   User.authenticate(req.body, (err, token) => {
     if(err) {
-      res.status(400).send(err);
+      res.send("Username or Password is not valid.");
     } else {
       res.cookie('authtoken', token).send();
     }
