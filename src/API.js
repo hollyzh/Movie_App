@@ -44,8 +44,7 @@ const API = {
   register(user) {
     axios.post('/api/user/register', user)
       .then(res => {
-        // RouteActions.route('/login');
-        console.log("res:", res)
+        RouteActions.route('/login');
       })
       .catch(console.error)
   },

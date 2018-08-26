@@ -44,40 +44,71 @@ export default class RegisterForm extends Component {
   render() {
     var { username, password1, password2 } = this.state;
     return (
-      <div className="container">
-        <form onSubmit={this._submit}>
-          <div className="form-group">
-            <label htmlFor="Username">Username: </label>
-            <input type="text"
-              className="form-control"
-              placeholder="Username"
-              required
-              value={username}
-              // onChange={this._onInputChange}
-              onChange={e=>{this.setState({username: e.target.value})}}
-            />
+      <div className="container registerContainer">
+        <h2>Sign Up</h2>
+        <form className='ui form' onSubmit={this._submit}>
+          <div className="field">
+            <label htmlFor="username">
+              Username:
+            </label>
+            <div className='ui right corner labeled input huge'>
+              <div className='ui label label right corner'>
+                <i aria-hidden='true' className='asterisk icon' />
+              </div>
+              <div className='ui left icon input'>
+                <input type='text'
+                  placeholder='Username'
+                  required
+                  value={username}
+                  onChange={e=>{this.setState({username: e.target.value})}}
+                />
+                <i aria-hidden='true' className='user icon' />
+              </div>
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="Password">Password: </label>
-            <input type="password"
-              className="form-control"
-              placeholder="Password"
-              required
-              value={password1}
-              onChange={e=>{this.setState({password1: e.target.value})}}
-            />
+          <div className="field pwdInput">
+            <label htmlFor="password">
+              Password:
+            </label>
+            <div className='ui right corner labeled input huge'>
+              <div className='ui label label right corner'>
+                <i aria-hidden='true' className='asterisk icon' />
+              </div>
+              <div className='ui left icon input'>
+                <input type='password'
+                  placeholder='Password'
+                  required
+                  value={password1}
+                  onChange={e=>{this.setState({password1: e.target.value})}}
+                />
+                <i aria-hidden='true' className='key icon' />
+              </div>
+            </div>
           </div>
-          <div className="form-group">
-            <label htmlFor="Password">Password (verify): </label>
-            <input type="password"
-              className="form-control"
-              placeholder="Password"
-              required
-              value={password2}
-              onChange={e=>{this.setState({password2: e.target.value})}}
-            />
+          <div className="field pwdInput">
+            <label htmlFor="password">
+              Password(verify):
+            </label>
+            <div className='ui right corner labeled input huge'>
+              <div className='ui label label right corner'>
+                <i aria-hidden='true' className='asterisk icon' />
+              </div>
+              <div className='ui left icon input'>
+                <input type='password'
+                  placeholder='Password(verify)'
+                  required
+                  value={password2}
+                  onChange={e=>{this.setState({password2: e.target.value})}}
+                />
+                <i aria-hidden='true' className='key icon' />
+              </div>
+            </div>
           </div>
-          <button type="submit" className="btn btn-default">Submit</button>
+          <div className='text-center'>
+            <button type='submit' className='ui teal big button' role='button'>
+              Submit
+            </button>
+          </div>
         </form>
       </div>
     )

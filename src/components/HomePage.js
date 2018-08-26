@@ -19,6 +19,7 @@ export default class HomePage extends Component {
     return (
       <div className="container">
         <div className="row" id="searchBarBG">
+          <h2>Search Your Movie...</h2>
           <div className="text-center" id="searchBar">
             <div className='ui big action input text-center'>
               <input type='text' placeholder='Search Keywords...'

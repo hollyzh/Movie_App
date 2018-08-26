@@ -10,8 +10,6 @@ $bg-picture: url('../images/bg.jpg');
   background-color: rgba(224, 255, 255, 0.5)
   border: 1px solid grey
   border-radius: 10px
-  // position:static
-  // *zoom: 1
 
 body
   background-size: cover
@@ -23,30 +21,32 @@ body
   -o-background-size: cover
   position: relative
 
+
+#searchBar
+  @include centerer
+
 #searchBarBG
   @include centerer
   @include bg-box
   height: 200px
 
-#searchBar
-  @include centerer
-
 @media(max-width:750px)
-  #searchBarBG, .loginContainer
+  #searchBarBG, .loginContainer, .registerContainer
     width: 80%
 
 @media(min-width:750px)
-  #searchBarBG, .loginContainer
+  #searchBarBG, .loginContainer, .registerContainer
     width: 40%
+
+h2
+  text-align: center
+  color: black
+  margin-top: 15px !important
 
 .loginContainer
   @include centerer
   @include bg-box
   height: 320px
-  h2
-    text-align: center
-    color: black
-    margin-top: 10px
   p
     color: red
     font-style: italic
@@ -60,6 +60,20 @@ body
     color: red
   .pwdInput
     margin-top: 20px !important
+  button
+    margin-top: 10px !important
+    width: 30%
+
+.registerContainer
+  @include centerer
+  @include bg-box
+  height: 350px
+  form
+    margin-top: 5%
+  label
+    font-size: 14px !important
+  i
+    color: blue
   button
     margin-top: 10px !important
     width: 30%
