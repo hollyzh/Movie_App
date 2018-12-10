@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovieActions from '../actions/MovieActions';
+import { browserHistory } from 'react-router';
 
 export default class HomePage extends Component {
   constructor(props) {
@@ -13,6 +14,7 @@ export default class HomePage extends Component {
   searchMovie() {
     var {movieKeyword} = this.state;
     MovieActions.searchMovies(movieKeyword);
+    browserHistory.push({ pathname: '/movies' });
   }
 
   render() {
@@ -32,7 +34,6 @@ export default class HomePage extends Component {
             </div>
           </div>
         </div>
-
       </div>
     )
   }

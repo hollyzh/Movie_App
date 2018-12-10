@@ -2,17 +2,21 @@ import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
 import MovieActions from '../actions/MovieActions';
 import { browserHistory } from 'react-router';
-
-
+import { Card, Grid, Image, Button, Header } from 'semantic-ui-react';
+import { Modal } from 'react-bootstrap';
+import MovieDetail from './MovieDetail';
 
 export default class MovieList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: MoviesStore.getMovies()
+      movies: MoviesStore.getMovies(),
+      show: false
     };
     this._onchange = this._onchange.bind(this);
-    this.getDetail = this.getDetail.bind(this);
+    // this.getDetail = this.getDetail.bind(this);
+    this.handleShow = this.handleShow.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   componentWillMount() {
@@ -29,44 +33,76 @@ export default class MovieList extends Component {
     })
   }
 
-  getDetail(imdbID) {
+  handleShow(imdbID) {
+    this.setState({
+      show: true
+     });
     MovieActions.searchOneMovie(imdbID);
-    browserHistory.push({pathname: '/movieDetail'});
   }
+
+  handleClose() {
+    this.setState({ show: false });
+  }
+
+  saveOneMovie(movie, username){
+    MovieActions.saveMovie(movie, username);
+  }
+
+  // getDetail(imdbID) {
+  //   MovieActions.searchOneMovie(imdbID);
+  //   browserHistory.push({pathname: '/movieDetail'});
+  // }
 
   render() {
     var {movies} = this.state;
     var row;
+    const { open, dimmer } = this.state
     if(!movies){
       row = <div className="row"></div>
     }else{
       var moviesList = movies.Search;
       row = moviesList.map(m => {
         var {Title, Year, imdbID, Poster} = m;
+        if(Poster == 'N/A') Poster = '../images/movie sample.jpg'
         return(
-          <div className="thumbnail" key={imdbID}>
-            <img src={Poster} alt={Title} />
-            <div className="caption">
-              <h3>{Title}</h3>
-              <p>{Year}</p>
-              <p>
-                <a onClick={e=>{this.getDetail(imdbID)}}
-                  className="btn btn-primary"
-                  role="button"
-                >Detail</a>
-              </p>
-            </div>
-          </div>
+          <Grid.Column key={imdbID}>
+            <Card>
+              <Image src={Poster} alt={Title} height='350px'/>
+              <Card.Content >
+                <Card.Header className='titleSize'>{Title}</Card.Header>
+                <Card.Meta>
+                  <span className='date'>{Year}</span>
+                </Card.Meta>
+              </Card.Content>
+              <Card.Content extra>
+                {/* <Button color='purple' className='ui fluid button' onClick={e=>{this.getDetail(imdbID)}}>Detail</Button> */}
+                <Button color='purple' className='ui fluid button' onClick={e=>{this.handleShow(imdbID)}}>Detail</Button>
+              </Card.Content>
+            </Card>
+          </Grid.Column>
         )
       })
     }
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-6 col-md-4">
+      <div className="container movieList">
+        <Grid className="movieGrid">
+          <Grid.Row columns={4} only="computer">
             {row}
-          </div>
-        </div>
+          </Grid.Row>
+          <Grid.Row columns={3} only="tablet">
+            {row}
+          </Grid.Row>
+          <Grid.Row columns={1} only="mobile">
+            {row}
+          </Grid.Row>
+        </Grid>
+        <Modal show={this.state.show} onHide={this.handleClose}>
+         <MovieDetail />
+         <Modal.Footer>
+           <Button onClick={e=>this.saveOneMovie(movie, "test@gmail.com")}>Save</Button>
+           <Button onClick={this.handleClose}>Close</Button>
+         </Modal.Footer>
+       </Modal>
       </div>
     )
   }

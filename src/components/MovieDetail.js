@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
-import MovieActions from '../actions/MovieActions';
+import { Modal } from 'react-bootstrap';
+// import MovieActions from '../actions/MovieActions';
 
 
 export default class MovieDetail extends Component {
@@ -26,9 +27,9 @@ export default class MovieDetail extends Component {
     })
   }
 
-  saveOneMovie(movie, username){
-    MovieActions.saveMovie(movie, username);
-  }
+  // saveOneMovie(movie, username){
+  //   MovieActions.saveMovie(movie, username);
+  // }
 
   render() {
     var {movie} = this.state;
@@ -37,28 +38,20 @@ export default class MovieDetail extends Component {
     }else{
       var {Title, Runtime, Actors, Awards, Director, Genre, Plot, Poster, imdbRating, imdbID} = movie;
       return (
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-6 col-md-4">
-              <div className="thumbnail" key={imdbID}>
-                <img src={Poster} alt={Title} />
-                <div className="caption">
-                  <h3>{Title}</h3>
-                  <p>{Runtime}</p>
-                  <p>{Actors}</p>
-                  <p>{Awards}</p>
-                  <p>{Director}</p>
-                  <p>{Genre}</p>
-                  <p>{Plot}</p>
-                  <p>{imdbRating}</p>
-                  <p>
-                    <a className="btn btn-primary" role="button" onClick={e=>this.saveOneMovie(movie, "test@gmail.com")}>Save</a>
-                    <a className="btn btn-default" role="button">Delete</a>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+        <div className="container modalStyle">
+          <Modal.Header key={imdbID} closeButton>
+            <Modal.Title>{Title}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="contentDetail">
+            <img src={Poster} alt={Title} />
+            <p>{Runtime}</p>
+            <p>{Actors}</p>
+            <p>{Awards}</p>
+            <p>{Director}</p>
+            <p>{Genre}</p>
+            <p>{Plot}</p>
+            <p>{imdbRating}</p>
+          </Modal.Body>
         </div>
       )
     }
