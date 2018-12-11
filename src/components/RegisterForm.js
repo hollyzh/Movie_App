@@ -58,6 +58,8 @@ export default class RegisterForm extends Component {
               <div className='ui left icon input'>
                 <input type='text'
                   placeholder='Username'
+                  data-toggle="tooltip"
+                  title="Hooray!"
                   required
                   value={username}
                   onChange={e=>{this.setState({username: e.target.value})}}
@@ -77,6 +79,7 @@ export default class RegisterForm extends Component {
               <div className='ui left icon input'>
                 <input type='password'
                   placeholder='Password'
+                  title="At least 8-10 characters, One captial letter, one lowercase letter, one digit, and one special sign."
                   required
                   value={password1}
                   onChange={e=>{this.setState({password1: e.target.value})}}

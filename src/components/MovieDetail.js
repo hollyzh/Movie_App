@@ -1,15 +1,18 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
-import { Modal } from 'react-bootstrap';
-// import MovieActions from '../actions/MovieActions';
+import { Modal, Button } from 'react-bootstrap';
+import MovieActions from '../actions/MovieActions';
+import { browserHistory } from 'react-router';
 
 
 export default class MovieDetail extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      show: true,
       movie: MoviesStore.getOneMovie()
     };
+    this.handleClose = this.handleClose.bind(this);
     this._onchange = this._onchange.bind(this);
   }
 
@@ -27,9 +30,15 @@ export default class MovieDetail extends Component {
     })
   }
 
-  // saveOneMovie(movie, username){
-  //   MovieActions.saveMovie(movie, username);
-  // }
+  handleClose() {
+    this.setState({ show: false });
+    browserHistory.push({pathname: '/movies'});
+  }
+
+  saveOneMovie(movie, username){
+    MovieActions.saveMovie(movie, username);
+    this.handleClose();
+  }
 
   render() {
     var {movie} = this.state;
@@ -38,21 +47,25 @@ export default class MovieDetail extends Component {
     }else{
       var {Title, Runtime, Actors, Awards, Director, Genre, Plot, Poster, imdbRating, imdbID} = movie;
       return (
-        <div className="container modalStyle">
-          <Modal.Header key={imdbID} closeButton>
-            <Modal.Title>{Title}</Modal.Title>
-          </Modal.Header>
-          <Modal.Body className="contentDetail">
-            <img src={Poster} alt={Title} />
-            <p>{Runtime}</p>
-            <p>{Actors}</p>
-            <p>{Awards}</p>
-            <p>{Director}</p>
-            <p>{Genre}</p>
-            <p>{Plot}</p>
-            <p>{imdbRating}</p>
-          </Modal.Body>
-        </div>
+          <Modal id="theModal" className= "modalStyle" show={this.state.show} onHide={this.handleClose}>
+            <Modal.Header key={imdbID} closeButton>
+              <Modal.Title>{Title}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="contentDetail">
+              <img src={Poster} alt={Title} />
+              <p><span>Runtime: </span>{Runtime}</p>
+              <p><span>Actors: </span>{Actors}</p>
+              <p><span>Awards: </span>{Awards}</p>
+              <p><span>Director: </span>{Director}</p>
+              <p><span>Genre: </span>{Genre}</p>
+              <p><span>Plot: </span>{Plot}</p>
+              <p><span>Rate: </span>{imdbRating}</p>
+            </Modal.Body>
+            <Modal.Footer>
+              <Button bsStyle="danger" onClick={e=>this.saveOneMovie(movie, "sample@gmail.com")}>Save</Button>
+              <Button bsStyle="info" onClick={this.handleClose}>Close</Button>
+            </Modal.Footer>
+          </Modal>
       )
     }
   }

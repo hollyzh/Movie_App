@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
 import MovieActions from '../actions/MovieActions';
 import { browserHistory } from 'react-router';
-import { Card, Grid, Image, Button, Header } from 'semantic-ui-react';
+import { Card, Grid, Button, Image, Header } from 'semantic-ui-react';
 import { Modal } from 'react-bootstrap';
 import MovieDetail from './MovieDetail';
 
@@ -10,13 +10,10 @@ export default class MovieList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: MoviesStore.getMovies(),
-      show: false
+      movies: MoviesStore.getMovies()
     };
     this._onchange = this._onchange.bind(this);
-    // this.getDetail = this.getDetail.bind(this);
     this.handleShow = this.handleShow.bind(this);
-    this.handleClose = this.handleClose.bind(this);
   }
 
   componentWillMount() {
@@ -33,25 +30,10 @@ export default class MovieList extends Component {
     })
   }
 
-  handleShow(imdbID) {
-    this.setState({
-      show: true
-     });
+  handleShow(imdbID, movies) {
     MovieActions.searchOneMovie(imdbID);
+    browserHistory.push({pathname: '/movieDetail'});
   }
-
-  handleClose() {
-    this.setState({ show: false });
-  }
-
-  saveOneMovie(movie, username){
-    MovieActions.saveMovie(movie, username);
-  }
-
-  // getDetail(imdbID) {
-  //   MovieActions.searchOneMovie(imdbID);
-  //   browserHistory.push({pathname: '/movieDetail'});
-  // }
 
   render() {
     var {movies} = this.state;
@@ -75,8 +57,8 @@ export default class MovieList extends Component {
                 </Card.Meta>
               </Card.Content>
               <Card.Content extra>
-                {/* <Button color='purple' className='ui fluid button' onClick={e=>{this.getDetail(imdbID)}}>Detail</Button> */}
-                <Button color='purple' className='ui fluid button' onClick={e=>{this.handleShow(imdbID)}}>Detail</Button>
+                <Button color="purple" className='ui fluid button' onClick={e=>{this.handleShow(imdbID, movies)}}
+                  data-target="#theModal" data-toggle="modal">Detail</Button>
               </Card.Content>
             </Card>
           </Grid.Column>
@@ -96,13 +78,6 @@ export default class MovieList extends Component {
             {row}
           </Grid.Row>
         </Grid>
-        <Modal show={this.state.show} onHide={this.handleClose}>
-         <MovieDetail />
-         <Modal.Footer>
-           <Button onClick={e=>this.saveOneMovie(movie, "test@gmail.com")}>Save</Button>
-           <Button onClick={this.handleClose}>Close</Button>
-         </Modal.Footer>
-       </Modal>
       </div>
     )
   }
