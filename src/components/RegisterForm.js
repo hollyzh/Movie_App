@@ -49,7 +49,7 @@ export default class RegisterForm extends Component {
         <form className='ui form' onSubmit={this._submit}>
           <div className="field">
             <label htmlFor="username">
-              Username:
+              Username: <i>(Username must be at least 6 characters long.)</i>
             </label>
             <div className='ui right corner labeled input huge'>
               <div className='ui label label right corner'>
@@ -58,8 +58,6 @@ export default class RegisterForm extends Component {
               <div className='ui left icon input'>
                 <input type='text'
                   placeholder='Username'
-                  data-toggle="tooltip"
-                  title="Hooray!"
                   required
                   value={username}
                   onChange={e=>{this.setState({username: e.target.value})}}
@@ -70,7 +68,7 @@ export default class RegisterForm extends Component {
           </div>
           <div className="field pwdInput">
             <label htmlFor="password">
-              Password:
+              Password: <i>(Password must be at least 8-10 characters, One captial letter, one lowercase letter, one digit, and one special sign.)</i>
             </label>
             <div className='ui right corner labeled input huge'>
               <div className='ui label label right corner'>

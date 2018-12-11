@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import UserActions from '../actions/UserActions';
 import axios from 'axios';
+import { browserHistory } from 'react-router';
 
 export default class LoginForm extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ export default class LoginForm extends Component {
         message: data
       })
     })
+    browserHistory.push({pathname: '/'});
   }
 
   render() {
