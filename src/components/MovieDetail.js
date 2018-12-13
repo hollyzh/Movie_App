@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
+import UserStore from '../stores/UserStore';
 import { Modal, Button } from 'react-bootstrap';
 import MovieActions from '../actions/MovieActions';
 import { browserHistory } from 'react-router';
@@ -10,7 +11,8 @@ export default class MovieDetail extends Component {
     super(props);
     this.state = {
       show: true,
-      movie: MoviesStore.getOneMovie()
+      movie: MoviesStore.getOneMovie(),
+      user: UserStore.getUser()
     };
     this.handleClose = this.handleClose.bind(this);
     this._onchange = this._onchange.bind(this);
@@ -42,6 +44,7 @@ export default class MovieDetail extends Component {
 
   render() {
     var {movie} = this.state;
+    var {user} = this.state;
     if(!movie){
       return (<div className="row"></div>)
     }else{
@@ -62,7 +65,7 @@ export default class MovieDetail extends Component {
               <p><span>Rate: </span>{imdbRating}</p>
             </Modal.Body>
             <Modal.Footer>
-              <Button bsStyle="danger" onClick={e=>this.saveOneMovie(movie, "sample@gmail.com")}>Save</Button>
+              <Button bsStyle="danger" onClick={e=>this.saveOneMovie(movie, user.username)}>Save</Button>
               <Button bsStyle="info" onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>
