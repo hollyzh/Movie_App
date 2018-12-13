@@ -3,6 +3,7 @@ import { EventEmitter } from 'events';
 
 var _movies = null;
 var _movie = null;
+var _favoriteMovies = null;
 
 class MoviesStore extends EventEmitter {
   constructor(props) {
@@ -15,6 +16,10 @@ class MoviesStore extends EventEmitter {
           break;
         case 'RECEIVE_ONE_MOVIE':
           _movie = action.payload.movie;
+          this.emit('CHANGE');
+          break;
+        case 'RECEIVE_FAVORITE_MOVIES':
+          _favoriteMovies = action.payload.favoriteMovies;
           this.emit('CHANGE');
           break;
       }
@@ -35,6 +40,10 @@ class MoviesStore extends EventEmitter {
 
   getOneMovie() {
     return _movie;
+  }
+
+  getFavoriteMovies() {
+    return _favoriteMovies;
   }
 
 }

@@ -8,6 +8,7 @@ import LoginForm from './components/LoginForm';
 import MovieDetail from './components/MovieDetail';
 import MovieList from './components/MovieList';
 import RegisterForm from './components/RegisterForm';
+import FavoriteMovies from './components/FavoriteMovies';
 
 render(
   <Router history={browserHistory} >
@@ -17,6 +18,7 @@ render(
       <Route path='login' component={LoginForm}></Route>
       <Route path='movies' component={MovieList}></Route>
       <Route path='movieDetail' component={MovieDetail}></Route>
+      <Route path='favoriteMovies' component={FavoriteMovies}></Route>
     </Route>
   </Router>,
   document.getElementById('root')

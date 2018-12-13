@@ -46,11 +46,12 @@ export default class HomePage extends Component {
   }
 
   _homePage() {
-    browserHistory.push({pathname: '/'})
+    browserHistory.push({pathname: '/'});
   }
 
   _getFavoriteMovies(username) {
     MovieActions.getFavoriteMovies(username);
+    browserHistory.push({pathname: '/favoriteMovies'});
   }
 
   render() {

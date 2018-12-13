@@ -51,7 +51,7 @@ const API = {
   getFavoriteMovies(username) {
     axios.get(`/api/movies/favoriteMovies/?${username}`)
       .then(res => res.data)
-      .then(ServerActions.receiveMovies)
+      .then(ServerActions.receiveFavoriteMovies)
       .catch(console.error)
   },
   removeMovie(imdbID, username) {

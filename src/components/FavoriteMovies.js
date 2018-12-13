@@ -6,7 +6,7 @@ export default class FavoriteMovies extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favoriteMovies: MoviesStore.getMovies()
+      favoriteMovies: MoviesStore.getFavoriteMovies()
     };
     this._onchange = this._onchange.bind(this);
     this._deleteFavoriteMovie = this._deleteFavoriteMovie.bind(this);
@@ -22,7 +22,7 @@ export default class FavoriteMovies extends Component {
 
   _onchange() {
     this.setState({
-      favoriteMovies: MoviesStore.getMovies()
+      favoriteMovies: MoviesStore.getFavoriteMovies()
     })
   }
 
@@ -53,7 +53,8 @@ export default class FavoriteMovies extends Component {
                 <p>{Plot}</p>
                 <p>{imdbRating}</p>
                 <p>
-                  <a className="btn btn-default" role="button" onClick={()=>this._deleteFavoriteMovie(imdbID, ownerUsername)}>Delete</a>
+                  <a className="btn btn-default"
+                     role="button" onClick={()=>this._deleteFavoriteMovie(imdbID, ownerUsername)}>Delete</a>
                 </p>
               </div>
             </div>

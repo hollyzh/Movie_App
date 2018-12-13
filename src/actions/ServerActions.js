@@ -13,6 +13,12 @@ const ServerActions = {
       payload: {movie}
     })
   },
+  receiveFavoriteMovies(favoriteMovies) {
+    AppDispatcher.dispatch({
+      type: 'RECEIVE_FAVORITE_MOVIES',
+      payload: {favoriteMovies}
+    })
+  },
   receiveUsers(userInfo){
     AppDispatcher.dispatch({
       type:'RECEIVE_USERS',

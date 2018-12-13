@@ -43,8 +43,7 @@ export default class MovieDetail extends Component {
   }
 
   render() {
-    var {movie} = this.state;
-    var {user} = this.state;
+    var {movie, user} = this.state;
     if(!movie){
       return (<div className="row"></div>)
     }else{
