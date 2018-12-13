@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import MoviesStore from '../stores/MoviesStore';
 import MovieActions from '../actions/MovieActions';
+import { Card, Grid, Button, Image, Header } from 'semantic-ui-react';
 
 export default class FavoriteMovies extends Component {
   constructor(props) {
@@ -39,25 +40,25 @@ export default class FavoriteMovies extends Component {
       var {favoriteMovie, ownerUsername} = favoriteMovies;
       if(favoriteMovie) {
         favoritesBlock = favoriteMovie.map(fm =>{
-          var {Title, Runtime, Actors, Awards, Director, Genre, Plot, Poster, imdbRating, imdbID} = fm;
+          var {Title, Runtime, Actors, Genre, imdbID, Year, Poster} = fm;
           return (
-            <div className="thumbnail" key={imdbID}>
-              <img src={Poster} alt={Title} />
-              <div className="caption">
-                <h3>{Title}</h3>
-                <p>{Runtime}</p>
-                <p>{Actors}</p>
-                <p>{Awards}</p>
-                <p>{Director}</p>
-                <p>{Genre}</p>
-                <p>{Plot}</p>
-                <p>{imdbRating}</p>
-                <p>
-                  <a className="btn btn-default"
-                     role="button" onClick={()=>this._deleteFavoriteMovie(imdbID, ownerUsername)}>Delete</a>
-                </p>
-              </div>
-            </div>
+            <Grid.Column key={imdbID} className="favoriteMovieStyle">
+              <Card className="card">
+                <Image src={Poster} alt={Title} height='350px'/>
+                <Card.Content >
+                  <Card.Header className='titleSize'>{Title} / <span>{Year}</span></Card.Header>
+                  <Card.Meta>
+                    <p className='date'>Runtime: {Runtime}</p>
+                    <p className='date'>Actors: {Actors}</p>
+                    <p className='date'>Genre: {Genre}</p>
+                  </Card.Meta>
+                </Card.Content>
+                <Card.Content extra>
+                  <Button color="teal" className='ui fluid button'
+                    onClick={()=>this._deleteFavoriteMovie(imdbID, ownerUsername)}>Delete</Button>
+                </Card.Content>
+              </Card>
+            </Grid.Column>
           )
         })
       } else {
@@ -65,13 +66,21 @@ export default class FavoriteMovies extends Component {
       }
     }
     return(
-      <div className="container">
-        <div className="row">
-          <div className="col-sm-6 col-md-4">
+      <div className="container favoriteMovieList">
+        <Grid className="movieGrid">
+          <Grid.Row columns={4} only="computer">
             {favoritesBlock}
-          </div>
-        </div>
+          </Grid.Row>
+          <Grid.Row columns={3} only="tablet">
+            {favoritesBlock}
+          </Grid.Row>
+          <Grid.Row columns={1} only="mobile">
+            {favoritesBlock}
+          </Grid.Row>
+        </Grid>
       </div>
+
+
     )
   }
 };

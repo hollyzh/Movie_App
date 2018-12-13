@@ -14,13 +14,12 @@ $bg-picture: url('../images/bg.jpg');
 body
   background-size: cover
   background-repeat: no-repeat
-  min-height: 100vh
   background: white $bg-picture center center no-repeat
+  min-height: 100vh
   -webkit-background-size: cover
   -moz-background-size: cover
   -o-background-size: cover
   position: relative
-
 
 #searchBar
   @include centerer
@@ -81,6 +80,10 @@ h2
 .movieList
   width: 100%
   background-color: #C7E79B
+  min-height: 100vh
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
 
 .movieGrid
   margin-left: 5% !important
@@ -105,3 +108,20 @@ h2
   span
     font-style: italic
     font-weight: bold
+
+.favoriteMovieStyle
+  span
+    color: grey
+    font-size: 12px
+    font-weight: lighter
+    font-style: italic
+
+.favoriteMovieList
+  width: 100%
+  background-color: #F2C4F5
+  min-height: 100vh
+  -webkit-background-size: cover
+  -moz-background-size: cover
+  -o-background-size: cover
+  .card
+    height: 560px

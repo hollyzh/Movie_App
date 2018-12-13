@@ -39,8 +39,8 @@ export default class MovieList extends Component {
     var {movies} = this.state;
     var row;
     const { open, dimmer } = this.state
-    if(!movies){
-      row = <div className="row"></div>
+    if(!movies.Search){
+      row = <div className="row">Can't find Moives!</div>
     }else{
       var moviesList = movies.Search;
       row = moviesList.map(m => {
