@@ -37,9 +37,13 @@ export default class MovieDetail extends Component {
     browserHistory.push({pathname: '/movies'});
   }
 
-  saveOneMovie(movie, username){
-    MovieActions.saveMovie(movie, username);
-    this.handleClose();
+  saveOneMovie(movie, user){
+    if(user == null){
+      browserHistory.push({pathname: '/login'});
+    }else{
+      MovieActions.saveMovie(movie, user.username);
+      this.handleClose();
+    }
   }
 
   render() {
@@ -64,7 +68,7 @@ export default class MovieDetail extends Component {
               <p><span>Rate: </span>{imdbRating}</p>
             </Modal.Body>
             <Modal.Footer>
-              <Button bsStyle="danger" onClick={e=>this.saveOneMovie(movie, user.username)}>Save</Button>
+              <Button bsStyle="danger" onClick={e=>this.saveOneMovie(movie, user)}>Save</Button>
               <Button bsStyle="info" onClick={this.handleClose}>Close</Button>
             </Modal.Footer>
           </Modal>

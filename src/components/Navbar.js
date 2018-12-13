@@ -39,6 +39,7 @@ export default class HomePage extends Component {
 
   _logout() {
     UserActions.logout();
+    browserHistory.push({pathname: '/'});
   }
 
   _signUp() {
