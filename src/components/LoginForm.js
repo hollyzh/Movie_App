@@ -24,7 +24,12 @@ export default class LoginForm extends Component {
         message: data
       })
     })
-    browserHistory.push({pathname: '/'});
+    .catch(function (error) {
+      console.log(error);
+    });
+    setTimeout(() => {
+       browserHistory.push({pathname: '/'});
+    }, 1000);
   }
 
   render() {
