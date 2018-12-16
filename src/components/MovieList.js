@@ -39,7 +39,7 @@ export default class MovieList extends Component {
     var {movies} = this.state;
     var row;
     const { open, dimmer } = this.state
-    if(!movies.Search){
+    if(movies.Response === "False"){
       row = <div className="row">Can't find Moives!</div>
     }else{
       var moviesList = movies.Search;
