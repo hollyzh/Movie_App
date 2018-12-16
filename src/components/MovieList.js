@@ -37,9 +37,12 @@ export default class MovieList extends Component {
 
   render() {
     var {movies} = this.state;
+    console.log('movies:', movies)
     var row;
     const { open, dimmer } = this.state
-    if(movies.Response === "False"){
+    if(!movies){
+      row = <div className="row"></div>
+    }else if(movies.Response === "False"){
       row = <div className="row">Can't find Moives!</div>
     }else{
       var moviesList = movies.Search;
