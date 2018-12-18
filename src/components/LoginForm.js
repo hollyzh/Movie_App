@@ -28,7 +28,8 @@ export default class LoginForm extends Component {
       console.log(error);
     });
     setTimeout(() => {
-       browserHistory.push({pathname: '/'});
+      if(!(this.state.message === "Username or Password is not valid."))
+        browserHistory.push({pathname: '/'});
     }, 1000);
   }
 
