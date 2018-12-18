@@ -61,7 +61,7 @@ export default class HomePage extends Component {
       return (
         <div className="navBar">
           <Menu size='huge'>
-            <Menu.Item name='MOVIE APP' onClick = {e=>this._homePage()}>
+            <Menu.Item name='MOVIE APP HOME' onClick = {e=>this._homePage()}>
             </Menu.Item>
             <Menu.Menu position='right'>
               <Menu.Item>
