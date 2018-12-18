@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const movieSchema = new mongoose.Schema({
   favoriteMovie: [],
-  ownerUsername: {type: String, require:true },
-  // owners: [{type: mongoose.Schema.Types.ObjectId, ref:'User'}],
+  ownerUsername: {type: String, require:true }
 });
 
 
